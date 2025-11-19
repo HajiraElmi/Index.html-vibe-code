@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Task Manager</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="app" id="app">
+            <header class="app-header">
+                <div class="header-top">
+                    <h1 class="app-title">Task Manager</h1>
+                    <div class="header-controls">
+                        <button id="theme-toggle" class="btn btn-icon" aria-pressed="false" aria-label="Toggle theme">🌙</button>
+                    </div>
+                </div>
+                <p class="app-sub">Add, complete, and remove tasks — saved in your browser.</p>
+            </header>
+
+            <main class="app-main">
+                <section aria-labelledby="add-task-heading" class="task-entry">
+                    <h2 id="add-task-heading" class="visually-hidden">Add a new task</h2>
+                    <form id="task-form" class="task-form" aria-describedby="task-form-desc">
+                        <p id="task-form-desc" class="visually-hidden">Type a task and press Add Task or Enter.</p>
+                        <label for="task-input" class="visually-hidden">Task description</label>
+                        <div class="input-group">
+                            <input
+                                id="task-input"
+                                name="task"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="e.g. Buy groceries"
+                                required
+                                aria-required="true"
+                            />
+                            <button type="submit" class="btn btn-primary" id="add-button">Add Task</button>
+                        </div>
+                        <p id="task-error" class="input-error visually-hidden" aria-live="assertive" aria-hidden="true"></p>
+                    </form>
+                </section>
+
+                <section class="task-list-wrapper" aria-labelledby="tasks-heading">
+                    <h2 id="tasks-heading" class="tasks-title">Tasks</h2>
+                    <div class="filters" role="tablist" aria-label="Filter tasks">
+                        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                        <button class="filter-btn" data-filter="active" aria-pressed="false">Active</button>
+                        <button class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+                    </div>
+                    <p id="tasks-live" class="visually-hidden" aria-live="polite"></p>
+                    <ul id="task-list" class="task-list" role="list"></ul>
+                    <template id="task-template">
+                        <li class="task-item">
+                            <div class="task-left">
+                                <input type="checkbox" class="task-checkbox" id="__ID__" />
+                                <label class="task-label" for="__ID__"></label>
+                            </div>
+                            <div class="task-actions">
+                                <button class="btn btn-icon btn-delete" aria-label="Delete task">✕</button>
+                            </div>
+                        </li>
+                    </template>
+                </section>
+            </main>
+
+            <footer class="app-footer">
+                <small>Accessible, responsive task manager • Data stored locally</small>
+            </footer>
+        </div>
+
+        <script src="app.js" defer></script>
+    </body>
+</html>
